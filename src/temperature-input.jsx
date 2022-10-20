@@ -1,5 +1,5 @@
 import React from "react";
-import { BoilingVerdict } from "./boiling-verdict";
+// import { BoilingVerdict } from "./boiling-verdict";
 
 const scaleNames = {
     c: 'Celsius',
@@ -10,21 +10,23 @@ const scaleNames = {
 class TemperatureInput extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            temperature: ''
-        }
+        // this.state = {
+        //     temperature: ''
+        // }
         this.handleChange = this.handleChange.bind(this);
     }
 
 
     handleChange(e) {
-        this.setState({
-            temperature: e.target.value
-        })
+        // this.setState({
+        //     temperature: e.target.value
+        // })
+        this.props.onTemperatureChange(e.target.value);
     }
 
     render() {
-        const temperature = this.state.temperature;
+        // const temperature = this.state.temperature;
+        const temperature = this.props.temperature;
         const scale = this.props.scale;
 
         return (
@@ -32,10 +34,8 @@ class TemperatureInput extends React.Component {
                 <label>Enter Temperature in {scaleNames[scale]}: </label>
                 <input
                     onChange={this.handleChange}
-                    value={this.state.temperature}
+                    value={temperature}
                 />
-
-                <BoilingVerdict celsius={parseFloat(this.state.temperature)} />
 
             </form>
         )
